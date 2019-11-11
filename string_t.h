@@ -1,11 +1,12 @@
 ﻿/*
 Файл, который содержит в себе типизацию строк.
 Автор: Сидорекно Михаил Павлович [SG]Muwa https://github.com/SGmuwa
-21.07.2019
+12.11.2019
 */
 #pragma once
 #include <stdlib.h>
 #include <stdbool.h>
+#include <string.h>
 
 #ifdef __cplusplus
 // Создание новой строки из стандартных символов "".
@@ -112,7 +113,7 @@ extern "C" {
 	//				то указатель равен NULL, а length = 0.
 	string_t string_malloc(size_t count)
 	{
-		string_t output = (string_t) { malloc(count), count };
+		string_t output = (string_t) { (char*) malloc(count), count };
 		return
 			output.first != NULL
 			? output
@@ -121,7 +122,7 @@ extern "C" {
 
 	string_t string_mallocCopyLimit(char * source, size_t countCopy)
 	{
-		string_t output = (string_t) { malloc(sizeof(char) * countCopy), countCopy };
+		string_t output = (string_t) { (char*) malloc(sizeof(char) * countCopy), countCopy };
 #ifdef _MSC_VER
 		errno_t err = memcpy_s(output.first, output.length, source, countCopy);
 #else
