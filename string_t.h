@@ -102,7 +102,7 @@ extern "C" {
 	// string_t input - Входная строка, указывающая промежуток доступных символов.
 	// Пропускает все доступные символы.
 	// Возвращает: Указатель на первый недоступный символ после доступных input.
-	inline char * string_getEnd(string_t input)
+	char * string_getEnd(string_t input)
 	{
 		return input.first + input.length;
 	}
